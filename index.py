@@ -5,6 +5,7 @@ import time
 
 ip_count = {}
 while True:
+    subprocess.run(['clear'])
     process = subprocess.run(['ss', '-ntu'], 
                            stdout=subprocess.PIPE,
                            universal_newlines=True)
@@ -27,5 +28,3 @@ while True:
 
         for ip in ip_count.keys():
             print(ip + " --> " + str(ip_count[ip]) + "\n")
-
-    # subprocess.run(['clear'])
