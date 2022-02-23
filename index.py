@@ -32,4 +32,4 @@ while True:
                     ip_max_count[ip] = int(ip_count[ip])
             else:
                 ip_max_count[ip] = int(ip_count[ip])
-            print(ip + " --> Actual: " + str(ip_count[ip]) + "Max: " + str(ip_max_count[ip]) +"\n")
+            print(ip + " --> Actual: " + str(ip_count[ip]) + "  Max: " + str(ip_max_count[ip]) +"\n")
