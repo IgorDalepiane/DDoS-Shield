@@ -2,11 +2,11 @@ import subprocess
 
 process = subprocess.Popen(['ss', '-ntu'], 
                            stdout=subprocess.PIPE,
-                           universal_newlines=True)
+                           universal_newlines=False)
 
 while True:
     output = process.stdout.readline()
-    # print(output.strip())
+    print(output.strip())
     # Do something else
     return_code = process.poll()
     if return_code is not None:
