@@ -16,6 +16,7 @@ while True:
             row_lists.append(row.split())
         
         print(row_lists)
+        row_lists.remove(row_lists[0])
         print("IP" + " --> " + "Packages sent")
         
         for row in row_lists:
