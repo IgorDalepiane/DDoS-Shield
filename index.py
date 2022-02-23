@@ -36,7 +36,6 @@ while True:
             time.sleep(1)
 
         elif sys.argv[1] == '-p':
-            subprocess.run(['clear'])
             print("IP" + " --> " + "Packages")
             for row in row_lists:
                 ip = row[5].split(":")[0]
