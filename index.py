@@ -1,9 +1,11 @@
 import subprocess
+import time
 
 process = subprocess.Popen(['ss', '-ntu'], 
                            stdout=subprocess.PIPE,
                            universal_newlines=True)
 
+count = 0
 while True:
     row_lists = []
 
@@ -16,9 +18,9 @@ while True:
         
         row_lists.remove(row_lists[0])
         print("IP" + " --> " + "Packages sent")
-        count = 0
+        
         for row in row_lists:
             count += int(row[3])
             print(row[5] + " --> " + row[3])
             print(count)
-        break
+        time.sleep(2)
