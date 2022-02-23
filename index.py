@@ -20,7 +20,7 @@ while True:
         row_lists.remove(row_lists[0])
         subprocess.run(['clear'])
         print("IP" + " --> " + "Packages sent")
-        
+        print(row_lists)
         for row in row_lists:
             ip = row[5].split(":")[0]
             if ip in ip_count:
