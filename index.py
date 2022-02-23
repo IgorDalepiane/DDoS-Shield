@@ -53,7 +53,7 @@ while True:
                 else:
                     ip_max_count[ip] = int(ip_count[ip])
                 print(ip + " --> Actual: " + str(ip_count[ip]) + "  Max: " + str(ip_max_count[ip]) +"\n")
-            time.sleep(0.5)
+            time.sleep(0.01)
         else:
             print("Invalid argument, use -c for connections or -p for packages.")
             exit(1)
