@@ -29,11 +29,15 @@ while True:
                 
         subprocess.run(['clear'])
         print(ip + " --> Connections: " + str(ip_count[ip]) +"\n")
-        if flag_to_clear == 10:
-            flag_to_clear = 0
-            subprocess.run(['clear'])
-        else:
-            flag_to_clear+=1
+        time.sleep(1)
+        # if flag_to_clear == 10:
+        #     flag_to_clear = 0
+        #     subprocess.run(['clear'])
+        # else:
+        #     flag_to_clear+=1
+
+
+        #Other
         # for row in row_lists:
         #     ip = row[5].split(":")[0]
         #     if ip in ip_count:
