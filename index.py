@@ -19,7 +19,7 @@ while True:
         
         row_lists.remove(row_lists[0])
         subprocess.run(['clear'])
-        print("IP" + " --> " + "Packages sent")
+        print("IP" + " --> " + "Connections")
 
         for row in row_lists:
             ip = row[5].split(":")[0]
@@ -27,7 +27,7 @@ while True:
                 ip_count[ip] += 1
             else:
                 ip_count[ip] = 1
-                
+
         for ip in ip_count.keys():
             print(ip + " --> Connections: " + str(ip_count[ip]), end="\n")
         time.sleep(1)
