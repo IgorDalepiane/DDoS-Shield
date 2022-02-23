@@ -1,6 +1,6 @@
 import subprocess
 import time
-
+import sys
 
 ip_max_count = {}
 flag_to_clear = 0
@@ -19,33 +19,36 @@ while True:
         
         row_lists.remove(row_lists[0])
         subprocess.run(['clear'])
-        print("IP" + " --> " + "Connections")
 
-        for row in row_lists:
-            ip = row[5].split(":")[0]
-            if ip in ip_count:
-                ip_count[ip] += 1
-            else:
-                ip_count[ip] = 1
+        if sys.argv[1] == '-c':
+            print("IP" + " --> " + "Connections")
+            for row in row_lists:
+                ip = row[5].split(":")[0]
+                if ip in ip_count:
+                    ip_count[ip] += 1
+                else:
+                    ip_count[ip] = 1
 
-        for ip in ip_count.keys():
-            print(ip + " --> Connections: " + str(ip_count[ip]), end="\n")
-        time.sleep(1)
-        
+            for ip in ip_count.keys():
+                print(ip + " --> Connections: " + str(ip_count[ip]), end="\n")
+            time.sleep(1)
 
-
-        #Other
-        # for row in row_lists:
-        #     ip = row[5].split(":")[0]
-        #     if ip in ip_count:
-        #         ip_count[ip] += int(row[2])
-        #     else:
-        #         ip_count[ip] = int(row[2])
-        
-        # for ip in ip_count.keys():
-        #     if ip in ip_max_count:
-        #         if int(ip_count[ip]) > ip_max_count[ip]:
-        #             ip_max_count[ip] = int(ip_count[ip])
-        #     else:
-        #         ip_max_count[ip] = int(ip_count[ip])
-        #     print(ip + " --> Actual: " + str(ip_count[ip]) + "  Max: " + str(ip_max_count[ip]) +"\n")
+        elif sys.argv[1] == '-p':
+            print("IP" + " --> " + "Packages")
+            for row in row_lists:
+                ip = row[5].split(":")[0]
+                if ip in ip_count:
+                    ip_count[ip] += int(row[2])
+                else:
+                    ip_count[ip] = int(row[2])
+            
+            for ip in ip_count.keys():
+                if ip in ip_max_count:
+                    if int(ip_count[ip]) > ip_max_count[ip]:
+                        ip_max_count[ip] = int(ip_count[ip])
+                else:
+                    ip_max_count[ip] = int(ip_count[ip])
+                print(ip + " --> Actual: " + str(ip_count[ip]) + "  Max: " + str(ip_max_count[ip]) +"\n")
+        else:
+            print("Invalid argument, use -c for connections or -p for packages.")
+            exit(1)
