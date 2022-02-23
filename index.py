@@ -1,7 +1,7 @@
 import subprocess
 import time
 import os
-cls = lambda: os.system('cls')
+cls = lambda: os.system('clear')
 
 
 ip_max_count = {}
