@@ -5,9 +5,9 @@ process = subprocess.Popen(['ss', '-ntu'],
                            universal_newlines=False)
 
 while True:
-    output = process.stdout.readline()
-    print(output.strip())
-    # Do something else
+    # output = process.stdout.readline()
+    # print(output.strip())
+    # # Do something else
     return_code = process.poll()
     if return_code is not None:
         print('RETURN CODE', return_code)
