@@ -19,7 +19,11 @@ while True:
         print("IP" + " --> " + "Packages sent")
         
         for row in row_lists:
-            ip_count[row[5]] = ip_count[row[5]] + int(row[2])
+            if row[5] in ip_count:
+                ip_count[row[5]] += int(row[2])
+            else:
+                a_dict[row[5]] = int(row[2])
+
             print(row[5] + " --> " + row[2])
 
         print(ip_count)
