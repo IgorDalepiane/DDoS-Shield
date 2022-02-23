@@ -5,9 +5,13 @@ process = subprocess.Popen(['ss', '-ntu'],
                            universal_newlines=True)
 
 while True:
+    row_lists = []
+
     return_code = process.poll()
     if return_code is not None:
-        # Process has finished, read rest of the output 
         for output in process.stdout.readlines():
-            print(output.strip())
+            rows = output.strip().split("\n")
+            for row in rows:
+                row_lists.append(row)
+        print(row_lists)
         break
