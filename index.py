@@ -2,7 +2,7 @@ import subprocess
 import time
 
 
-
+ip_max_count = {}
 while True:
     ip_count = {}
     # subprocess.run(['clear'])
@@ -25,6 +25,11 @@ while True:
                 ip_count[ip] += int(row[2])
             else:
                 ip_count[ip] = int(row[2])
-
+        
         for ip in ip_count.keys():
-            print(ip + " --> " + str(ip_count[ip]) + "\n")
+            if ip in ip_max_count:
+                if int(ip_count[ip]) > ip_max_count[ip]:
+                    ip_max_count[ip] = int(ip_count[ip])
+            else:
+                ip_max_count[ip] = int(ip_count[ip])
+            print(ip + " --> Actual: " + str(ip_count[ip]) + "Max: " + ip_max_count[ip] +"\n")
