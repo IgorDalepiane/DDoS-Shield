@@ -26,6 +26,6 @@ while True:
                 ip_count[ip] = int(row[2])
 
         for ip in ip_count.keys():
-            print(ip + " --> " + str(ip_count[ip]))
+            print(ip + " --> " + str(ip_count[ip]) + "\n")
 
-    subprocess.run(['clear'])
+    # subprocess.run(['clear'])
