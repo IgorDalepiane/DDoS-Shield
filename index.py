@@ -2,7 +2,7 @@ import subprocess
 
 process = subprocess.Popen(['ss', '-ntu'], 
                            stdout=subprocess.PIPE,
-                           universal_newlines=False)
+                           universal_newlines=True)
 
 while True:
     # output = process.stdout.readline()
