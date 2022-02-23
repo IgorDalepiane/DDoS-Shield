@@ -3,7 +3,7 @@ import time
 
 
 
-count = 0
+ip_count = {}
 while True:
     process = subprocess.run(['ss', '-ntu'], 
                            stdout=subprocess.PIPE,
@@ -15,13 +15,12 @@ while True:
         for row in rows:
             row_lists.append(row.split())
         
-        print(row_lists)
         row_lists.remove(row_lists[0])
         print("IP" + " --> " + "Packages sent")
         
         for row in row_lists:
-            count = count + int(row[2])
+            ip_count[row[5]] = ip_count[row[5]] + int(row[2])
             print(row[5] + " --> " + row[2])
-            print(count)
 
+        print(ip_count)
         time.sleep(2)
