@@ -1,5 +1,7 @@
 import subprocess
 import time
+import os
+cls = lambda: os.system('cls')
 
 
 ip_max_count = {}
@@ -30,7 +32,7 @@ while True:
         print(ip + " --> Connections: " + str(ip_count[ip]) +"\n")
         if flag_to_clear == 10:
             flag_to_clear = 0
-            subprocess.run(['clear'])
+            cls()
         else:
             flag_to_clear+=1
         # for row in row_lists:
