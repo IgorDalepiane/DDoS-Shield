@@ -3,8 +3,8 @@ import time
 
 
 
-ip_count = {}
 while True:
+    ip_count = {}
     # subprocess.run(['clear'])
     process = subprocess.run(['ss', '-ntu'], 
                            stdout=subprocess.PIPE,
@@ -22,7 +22,7 @@ while True:
         for row in row_lists:
             ip = row[5].split(":")[0]
             if ip in ip_count:
-                ip_count[ip] += int(row[2])
+                ip_count[ip] = int(row[2])
             else:
                 ip_count[ip] = int(row[2])
 
