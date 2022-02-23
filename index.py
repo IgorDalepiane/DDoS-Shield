@@ -3,7 +3,7 @@ import time
 
 
 ip_max_count = {}
-flag_to_clear = 1
+flag_to_clear = 0
 while True:
     ip_count = {}
     
@@ -28,11 +28,11 @@ while True:
                 ip_count[ip] = 1
 
         print(ip + " --> Connections: " + str(ip_count[ip]) +"\n")
-        if flag_to_clear:
+        if flag_to_clear == 10:
             flag_to_clear = 0
             subprocess.run(['clear'])
         else:
-            flag_to_clear = 1
+            flag_to_clear+=1
         # for row in row_lists:
         #     ip = row[5].split(":")[0]
         #     if ip in ip_count:
