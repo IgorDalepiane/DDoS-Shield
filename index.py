@@ -19,8 +19,9 @@ while True:
         
         row_lists.remove(row_lists[0])
         subprocess.run(['clear'])
-        if len(sys.argv) == 1:
+        if len(sys.argv) == 1 or sys.argv[1] != '-c' and sys.argv[1] != '-p':
             print("Invalid argument, use -c for connections or -p for packages.")
+            exit(1)
         elif sys.argv[1] == '-c':
             print("IP" + " --> " + "Connections")
             for row in row_lists:
