@@ -18,6 +18,7 @@ while True:
             row_lists.append(row.split())
         
         row_lists.remove(row_lists[0])
+        subprocess.run(['clear'])
         print("IP" + " --> " + "Packages sent")
         
         for row in row_lists:
@@ -27,7 +28,6 @@ while True:
             else:
                 ip_count[ip] = 1
                 
-        subprocess.run(['clear'])
         print(ip + " --> Connections: " + str(ip_count[ip]) +"\n")
         time.sleep(1)
         # if flag_to_clear == 10:
