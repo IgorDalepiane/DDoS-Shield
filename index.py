@@ -1,11 +1,13 @@
 import subprocess
 import time
+from turtle import clear
 
 
 ip_max_count = {}
+flag_to_clear = 1
 while True:
     ip_count = {}
-    # subprocess.run(['clear'])
+    
     process = subprocess.run(['ss', '-ntu'], 
                            stdout=subprocess.PIPE,
                            universal_newlines=True)
@@ -27,7 +29,11 @@ while True:
                 ip_count[ip] = 1
 
         print(ip + " --> Connections: " + str(ip_count[ip]) +"\n")
-
+        if flag_to_clear:
+            flag_to_clear = 0
+            subprocess.run(['clear'])
+        else:
+            flag_to_clear = 1
         # for row in row_lists:
         #     ip = row[5].split(":")[0]
         #     if ip in ip_count:
