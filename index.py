@@ -12,6 +12,9 @@ while True:
         for output in process.stdout.readlines():
             rows = output.strip().split("\n")
             for row in rows:
-                row_lists.append(row)
-        print(row_lists)
+                row_lists.append(row.split())
+        
+        for row in row_lists:
+            print(row[3])
+
         break
