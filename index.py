@@ -1,6 +1,5 @@
 import subprocess
 import time
-from turtle import clear
 
 
 ip_max_count = {}
