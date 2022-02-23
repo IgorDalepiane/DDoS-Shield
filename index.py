@@ -16,7 +16,9 @@ while True:
         
         row_lists.remove(row_lists[0])
         print("IP" + " --> " + "Packages sent")
+        count = 0
         for row in row_lists:
+            count += row[3]
             print(row[5] + " --> " + row[3])
-
+            print(count)
         break
