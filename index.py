@@ -36,6 +36,8 @@ while True:
             time.sleep(1)
 
         elif sys.argv[1] == '-p':
+            subprocess.run(['clear'])
+            
             print("IP" + " --> " + "Packages")
             for row in row_lists:
                 ip = row[5].split(":")[0]
@@ -51,6 +53,7 @@ while True:
                 else:
                     ip_max_count[ip] = int(ip_count[ip])
                 print(ip + " --> Actual: " + str(ip_count[ip]) + "  Max: " + str(ip_max_count[ip]) +"\n")
+            time.sleep(0.5)
         else:
             print("Invalid argument, use -c for connections or -p for packages.")
             exit(1)
