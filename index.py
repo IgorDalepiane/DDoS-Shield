@@ -16,6 +16,6 @@ while True:
         
         row_lists.remove(row_lists[0])
         for row in row_lists:
-            print(row[3] + " " + row[5])
+            print(row[5] + " --> " + row[3])
 
         break
