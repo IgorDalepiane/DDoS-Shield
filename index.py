@@ -30,6 +30,7 @@ while True:
                 ip_count[ip] = 1
 
         print(ip + " --> Connections: " + str(ip_count[ip]) +"\n")
+        time.sleep(1)
         if flag_to_clear == 10:
             flag_to_clear = 0
             cls()
