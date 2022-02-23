@@ -28,4 +28,3 @@ while True:
             print(row[5] + " --> " + row[2])
 
         print(ip_count)
-        time.sleep(2)
