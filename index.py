@@ -27,13 +27,11 @@ while True:
                 ip_count[ip] += 1
             else:
                 ip_count[ip] = 1
+                
+        for ip in ip_count.keys():
             print(ip + " --> Connections: " + str(ip_count[ip]), end="\n")
         time.sleep(1)
-        # if flag_to_clear == 10:
-        #     flag_to_clear = 0
-        #     subprocess.run(['clear'])
-        # else:
-        #     flag_to_clear+=1
+        
 
 
         #Other
