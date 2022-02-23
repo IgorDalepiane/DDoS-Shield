@@ -20,8 +20,8 @@ while True:
         print("IP" + " --> " + "Packages sent")
         
         for row in row_lists:
-            count += int(row[3])
-            print(row[5] + " --> " + row[3])
+            count = count + int(row[2])
+            print(row[5] + " --> " + row[2])
             print(count)
 
         time.sleep(2)
