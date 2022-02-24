@@ -68,7 +68,7 @@ while True:
                             universal_newlines=True)
                     temp_block.append(key)
             except:
-                print('')
+                continue
             print(ip + ":" + key.split(":")[2] + " --> Bytes: " + ip_bytes + " Count: " + str(ip_bytes_count[key]), end="\n")
         
         remove_other_tcp = []
