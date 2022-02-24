@@ -30,9 +30,6 @@ while True:
             print("Using default value (50) for both")
             time.sleep(2)
 
-        if len(sys.argv) < 5:
-            print("Please use '-c <MAX_CONNECTIONS>'")
-            exit(1)
         subprocess.run(['clear'])
         for row in tcp_cons:
             ip = row[5].split(":")[0]
