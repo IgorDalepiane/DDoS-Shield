@@ -6,6 +6,16 @@ ip_bytes_count = {}
 ips_blocked = []
 MAX_CONNECTIONS = 50
 MAX_SAME_BYTES_CONNECTIONS = 50
+
+try:
+    MAX_CONNECTIONS = sys.argv[1]
+    MAX_SAME_BYTES_CONNECTIONS = sys.argv[2]
+except:
+    print("If you want to specify a number of connections or \nconnections with same number of bytes:")
+    print("sudo index.py <MAX_CONNECTIONS> <MAX_SAME_BYTES_CONNECTIONS>")
+    print("Using default value (50) for both")
+    time.sleep(2)
+
 while True:
     ip_count = {}
     
@@ -20,15 +30,6 @@ while True:
             tcp_cons.append(row.split())
         
         tcp_cons.remove(tcp_cons[0])
-
-        try:
-            MAX_CONNECTIONS = sys.argv[1]
-            MAX_SAME_BYTES_CONNECTIONS = sys.argv[2]
-        except:
-            print("If you want to specify a number of connections or \nconnections with same number of bytes:")
-            print("sudo index.py <MAX_CONNECTIONS> <MAX_SAME_BYTES_CONNECTIONS>")
-            print("Using default value (50) for both")
-            time.sleep(2)
 
         subprocess.run(['clear'])
         for row in tcp_cons:
