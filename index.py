@@ -57,4 +57,4 @@ while True:
                 ip_bytes = key.split(":")[1]
                 print(ip + " --> Bytes: " + ip_bytes + " Count: " + str(ip_bytes_count[key]), end="\n")
 
-            time.sleep(1)
+            time.sleep(0.05)
