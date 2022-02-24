@@ -3,6 +3,7 @@ import time
 import sys
 
 ip_bytes_count = {}
+ips_blocked = []
 while True:
     ip_count = {}
     
@@ -57,9 +58,17 @@ while True:
                 ip_bytes = key.split(":")[1]
                 
                 if ip_bytes_count[key] > 50:
-                    print("BLOCKED:"+key)
+                    ips_blocked.append(key)
+                    
                     subprocess.run(['sudo','iptables', '-A', 'INPUT', '-p', 'tcp', '--dport', key.split(":")[2], '-s', ip, '-j', 'DROP'], 
                            stdout=subprocess.PIPE,
                            universal_newlines=True)
 
                 print(ip + " --> Bytes: " + ip_bytes + " Count: " + str(ip_bytes_count[key]), end="\n")
+                ip_bytes_count.pop(key)
+            
+            print("IPs Blocked:",end="\n")
+            for ipblocked in ips_blocked:
+                print("BLOCKED: "+ipblocked, end="\n")
+            
+            time.sleep(0.04)
