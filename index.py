@@ -15,7 +15,7 @@ except:
     print("sudo index.py <MAX_CONNECTIONS> <MAX_SAME_BYTES_CONNECTIONS>")
     print("Using default value (50) for both")
     time.sleep(2)
-count_ip=[]
+count_ip={}
 while True:
     ip_count = {}
     
