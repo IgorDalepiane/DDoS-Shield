@@ -15,7 +15,7 @@ except:
     print("sudo index.py <MAX_CONNECTIONS> <MAX_SAME_BYTES_CONNECTIONS>")
     print("Using default value (50) for both")
     time.sleep(2)
-
+ip_ports={}
 while True:
     ip_count = {}
     
@@ -36,23 +36,36 @@ while True:
         for row in tcp_cons:
             ip = row[5].split(":")[0]
             ip_bytes = ip+":"+row[2]+":"+row[4].split(":")[1]
-
+            ip_port = ip+":"+row[4].split(":")[1]
             if int(row[2]) != 0:
                 if ip_bytes in ip_bytes_count:
                     ip_bytes_count[ip_bytes] += 1
                 else:
                     ip_bytes_count[ip_bytes] = 1
 
-            if ip in ip_count:
-                ip_count[ip] += 1
-                if ip_count[ip] > int(MAX_CONNECTIONS):
-                    subprocess.run(['sudo','iptables', '-A', 'INPUT', '-p', 'tcp', '--dport', key.split(":")[2], '-s', ip, '-j', 'DROP'], 
+            if ip_port in ip_ports:
+                ip_ports[ip_port] += 1
+                if ip_ports[ip_port] > int(MAX_CONNECTIONS):
+                    subprocess.run(['sudo','iptables', '-A', 'INPUT', '-p', 'tcp', '--dport', row[4].split(":")[1], '-s', ip, '-j', 'DROP'], 
                         stdout=subprocess.PIPE,
                         universal_newlines=True)
                     subprocess.run(['sudo','ss', '-K', 'dst', ip], 
                             stdout=subprocess.PIPE,
                             universal_newlines=True)
-                    temp_block.append(key)
+                    temp_block.append(ip_bytes)
+            else:
+                ip_ports[ip_port] = 1
+
+            if ip in ip_count:
+                ip_count[ip] += 1
+                if ip_count[ip] > int(MAX_CONNECTIONS):
+                    subprocess.run(['sudo','iptables', '-A', 'INPUT', '-p', 'tcp', '--dport', row[4].split(":")[1], '-s', ip, '-j', 'DROP'], 
+                        stdout=subprocess.PIPE,
+                        universal_newlines=True)
+                    subprocess.run(['sudo','ss', '-K', 'dst', ip], 
+                            stdout=subprocess.PIPE,
+                            universal_newlines=True)
+                    temp_block.append(ip_bytes)
             else:
                 ip_count[ip] = 1
 
