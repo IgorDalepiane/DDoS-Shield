@@ -66,7 +66,7 @@ while True:
                            universal_newlines=True)
                     temp_block.append(key)
 
-                print(ip + " --> Bytes: " + ip_bytes + " Count: " + str(ip_bytes_count[key]), end="\n")
+                print(ip + ":" + key.split(":")[2] + " --> Bytes: " + ip_bytes + " Count: " + str(ip_bytes_count[key]), end="\n")
             
             for ip in temp_block:
                 ip_bytes_count.pop(ip)
