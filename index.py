@@ -58,7 +58,7 @@ while True:
                 
                 if ip_bytes_count[key] > 50:
                     print("BLOCKED:"+key)
-                    subprocess.run(['ufw', '-deny', 'from', ip, 'to', 'any', 'port', key.split(":")[2]], 
+                    subprocess.run(['iptables', '-A', 'INPUT', '-p', 'tcp', '--dport', key.split(":")[2], '-s', ip, '-j', 'DROP'], 
                            stdout=subprocess.PIPE,
                            universal_newlines=True)
 
