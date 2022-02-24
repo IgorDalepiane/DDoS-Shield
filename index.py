@@ -36,7 +36,6 @@ while True:
 
         elif sys.argv[1] == '-b':
             subprocess.run(['clear'])
-            print("IP" + " --> " + "Bytes sent")
             for row in tcp_cons:
                 ip = row[5].split(":")[0]
                 ip_bytes = ip+":"+row[2]+":"+row[4].split(":")[1]
@@ -56,6 +55,7 @@ while True:
             for ip in ip_count.keys():
                 print(ip + " --> " + str(ip_count[ip]), end="\n")
 
+            print("\nIP" + " --> " + "Bytes sent")
             temp_block=[]
             for key in ip_bytes_count.keys():
                 ip = key.split(":")[0]
@@ -74,7 +74,7 @@ while True:
             for ip in temp_block:
                 ip_bytes_count.pop(ip)
 
-            print("IPs Blocked:",end="\n")
+            print("\nIPs Blocked:",end="\n")
             for ipblocked in ips_blocked:
                 ipstring = ipblocked.split(":")[0] + ":" + ipblocked.split(":")[2]
                 print("BLOCKED: "+ipblocked, end="\n")
