@@ -46,10 +46,11 @@ while True:
                 ip = row[5].split(":")[0]
                 ip_bytes = ip+":"+row[2]
 
-                if ip_bytes in ip_bytes_count:
-                    ip_bytes_count[ip_bytes] += 1
-                else:
-                    ip_bytes_count[ip_bytes] = 1
+                if ip_bytes != 0:
+                    if ip_bytes in ip_bytes_count:
+                        ip_bytes_count[ip_bytes] += 1
+                    else:
+                        ip_bytes_count[ip_bytes] = 1
 
             for key in ip_bytes_count.keys():
                 ip = key.split(":")[0]
