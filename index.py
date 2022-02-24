@@ -53,6 +53,8 @@ while True:
                         subprocess.run(['sudo','ss', '-K', 'dst', ip], 
                                 stdout=subprocess.PIPE,
                                 universal_newlines=True)
+                        ips_blocked.append(ip_bytes)
+                        temp_block.append(ip_bytes)
                 else:
                     ip_ports[ip_port] = 1
 
@@ -65,6 +67,8 @@ while True:
                     subprocess.run(['sudo','ss', '-K', 'dst', ip], 
                             stdout=subprocess.PIPE,
                             universal_newlines=True)
+                    ips_blocked.append(ip_bytes)
+                    temp_block.append(ip_bytes)
             else:
                 ip_count[ip] = 1
 
@@ -90,7 +94,6 @@ while True:
         
         remove_other_tcp = []
         for ip in temp_block:
-            ip_bytes_count.pop(ip)
             for key in ip_bytes_count:
                 ipstring_key = key.split(":")[0] + ":" + key.split(":")[2]
                 ipstring_blocked = ip.split(":")[0] + ":" + ip.split(":")[2]
