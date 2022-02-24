@@ -15,7 +15,7 @@ except:
     print("sudo index.py <MAX_CONNECTIONS> <MAX_SAME_BYTES_CONNECTIONS>")
     print("Using default value (50) for both")
     time.sleep(2)
-count_ip={}
+
 while True:
     ip_count = {}
     
@@ -64,20 +64,6 @@ while True:
         for key in ip_bytes_count.keys():
             ip = key.split(":")[0]
             ip_bytes = key.split(":")[1]
-
-            if ip in count_ip:
-                count_ip[ip] += 1
-                if count_ip[ip] > int(MAX_CONNECTIONS):
-                    subprocess.run(['sudo','iptables', '-A', 'INPUT', '-p', 'tcp', '--dport', key.split(":")[2], '-s', ip, '-j', 'DROP'], 
-                        stdout=subprocess.PIPE,
-                        universal_newlines=True)
-                    subprocess.run(['sudo','ss', '-K', 'dst', ip], 
-                            stdout=subprocess.PIPE,
-                            universal_newlines=True)
-                    temp_block.append(key)
-            else:
-                count_ip[ip] = 1
-
             if ip_bytes_count[key] > int(MAX_SAME_BYTES_CONNECTIONS):
                 ips_blocked.append(key)
                 
