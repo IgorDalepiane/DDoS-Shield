@@ -53,9 +53,10 @@ while True:
                             stdout=subprocess.PIPE,
                             universal_newlines=True)
                     ips_blocked.append(ip_bytes)
+                    temp_block.append(ip_bytes)
             else:
                 ip_count[ip] = 1
-
+        print(temp_block)
         print("Number of Connections:", end='\n')
         for ip in ip_count.keys():
             print(ip + " --> " + str(ip_count[ip]), end="\n")
