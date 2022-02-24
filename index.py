@@ -44,19 +44,18 @@ while True:
                 else:
                     ip_bytes_count[ip_bytes] = 1
 
-            print("ASDASDASDASDASDASDASDASd")
-            if ip_port in ip_ports:
-                ip_ports[ip_port] += 1
-                if ip_ports[ip_port] > int(MAX_CONNECTIONS):
-                    subprocess.run(['sudo','iptables', '-A', 'INPUT', '-p', 'tcp', '--dport', row[4].split(":")[1], '-s', ip, '-j', 'DROP'], 
-                        stdout=subprocess.PIPE,
-                        universal_newlines=True)
-                    subprocess.run(['sudo','ss', '-K', 'dst', ip], 
+                if ip_port in ip_ports:
+                    ip_ports[ip_port] += 1
+                    if ip_ports[ip_port] > int(MAX_CONNECTIONS):
+                        subprocess.run(['sudo','iptables', '-A', 'INPUT', '-p', 'tcp', '--dport', row[4].split(":")[1], '-s', ip, '-j', 'DROP'], 
                             stdout=subprocess.PIPE,
                             universal_newlines=True)
-                    temp_block.append(ip_bytes)
-            else:
-                ip_ports[ip_port] = 1
+                        subprocess.run(['sudo','ss', '-K', 'dst', ip], 
+                                stdout=subprocess.PIPE,
+                                universal_newlines=True)
+                        temp_block.append(ip_bytes)
+                else:
+                    ip_ports[ip_port] = 1
 
             if ip in ip_count:
                 ip_count[ip] += 1
