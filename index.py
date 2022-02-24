@@ -1,6 +1,7 @@
 import subprocess
 import time
 import sys
+import psutil
 
 ip_bytes_count = {}
 ips_blocked = []
@@ -41,7 +42,7 @@ while True:
 
         elif sys.argv[1] == '-b':
             subprocess.run(['clear'])
-            
+            print(psutil.net_connections(kind='tcp'))
             print("IP" + " --> " + "Bytes sent")
             for row in tcp_cons:
                 ip = row[5].split(":")[0]
