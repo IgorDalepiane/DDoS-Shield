@@ -8,6 +8,11 @@ MAX_CONNECTIONS = 50
 MAX_SAME_BYTES_CONNECTIONS = 50
 
 try:
+    if sys.argv[1] == '-h':
+        print("sudo index.py <MAX_CONNECTIONS> <MAX_SAME_BYTES_CONNECTIONS>")
+        print("or with default values(50)")
+        print("sudo index.py")
+        exit(1)
     MAX_CONNECTIONS = sys.argv[1]
     MAX_SAME_BYTES_CONNECTIONS = sys.argv[2]
 except:
