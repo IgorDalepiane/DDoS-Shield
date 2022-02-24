@@ -76,6 +76,12 @@ while True:
             
             for ip in temp_block:
                 ip_bytes_count.pop(ip)
+                for key in ip_bytes_count:
+                    ipstring_key = key.split(":")[0] + ":" + key.split(":")[2]
+                    ipstring_blocked = ip.split(":")[0] + ":" + ip.split(":")[2]
+
+                    if ipstring_key == ipstring_blocked:
+                        ip_bytes_count.pop(key)
 
             print("\nIPs Blocked:",end="\n")
             for ipblocked in ips_blocked:
