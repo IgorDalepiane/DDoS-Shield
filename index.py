@@ -43,6 +43,7 @@ while True:
             subprocess.run(['clear'])
             print("IP" + " --> " + "Bytes sent")
             for row in tcp_cons:
+                print(row,end="\n");
                 ip = row[5].split(":")[0]
                 ip_bytes = ip+":"+row[2]+":"+row[4].split(":")[1]
 
