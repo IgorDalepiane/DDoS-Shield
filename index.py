@@ -79,7 +79,7 @@ while True:
         
         remove_other_tcp = []
         for ip in temp_block:
-            ip_bytes_count.pop(ip)
+            # ip_bytes_count.pop(ip)
             for key in ip_bytes_count:
                 ipstring_key = key.split(":")[0] + ":" + key.split(":")[2]
                 ipstring_blocked = ip.split(":")[0] + ":" + ip.split(":")[2]
