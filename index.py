@@ -28,12 +28,7 @@ while True:
 
             subprocess.run(['clear'])
             print("IP" + " --> " + "Connections")
-            for row in tcp_cons:
-                ip = row[5].split(":")[0]
-                if ip in ip_count:
-                    ip_count[ip] += 1
-                else:
-                    ip_count[ip] = 1
+            
 
             for ip in ip_count.keys():
                 print(ip + " --> Connections: " + str(ip_count[ip]), end="\n")
@@ -52,6 +47,14 @@ while True:
                         ip_bytes_count[ip_bytes] += 1
                     else:
                         ip_bytes_count[ip_bytes] = 1
+
+                    if ip in ip_count:
+                        ip_count[ip] += 1
+                    else:
+                        ip_count[ip] = 1
+            for ip in ip_count.keys():
+                print("Number of Connections:", end='\n')
+                print(ip + " --> " + str(ip_count[ip]), end="\n")
 
             temp_block=[]
             for key in ip_bytes_count.keys():
