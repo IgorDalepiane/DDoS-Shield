@@ -63,4 +63,3 @@ while True:
                            universal_newlines=True)
 
                 print(ip + " --> Bytes: " + ip_bytes + " Count: " + str(ip_bytes_count[key]), end="\n")
-            time.sleep(0.05)
