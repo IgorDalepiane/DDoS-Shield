@@ -67,6 +67,9 @@ while True:
                     subprocess.run(['sudo','iptables', '-A', 'INPUT', '-p', 'tcp', '--dport', key.split(":")[2], '-s', ip, '-j', 'DROP'], 
                            stdout=subprocess.PIPE,
                            universal_newlines=True)
+                    subprocess.run(['sudo','ss', '-K', 'dst', 'ip'], 
+                           stdout=subprocess.PIPE,
+                           universal_newlines=True)
                     temp_block.append(key)
 
                 print(ip + ":" + key.split(":")[2] + " --> Bytes: " + ip_bytes + " Count: " + str(ip_bytes_count[key]), end="\n")
