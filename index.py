@@ -77,6 +77,6 @@ while True:
             print("\nIPs Blocked:",end="\n")
             for ipblocked in ips_blocked:
                 ipstring = ipblocked.split(":")[0] + ":" + ipblocked.split(":")[2]
-                print("BLOCKED: "+ipblocked, end="\n")
+                print("BLOCKED: "+ipstring, end="\n")
             
             time.sleep(0.04)
