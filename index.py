@@ -32,6 +32,7 @@ while True:
         tcp_cons.remove(tcp_cons[0])
 
         subprocess.run(['clear'])
+        temp_block=[]
         for row in tcp_cons:
             ip = row[5].split(":")[0]
             ip_bytes = ip+":"+row[2]+":"+row[4].split(":")[1]
@@ -44,6 +45,14 @@ while True:
 
             if ip in ip_count:
                 ip_count[ip] += 1
+                if ip_count[ip] > int(MAX_CONNECTIONS):
+                    subprocess.run(['sudo','iptables', '-A', 'INPUT', '-p', 'tcp', '--dport', key.split(":")[2], '-s', ip, '-j', 'DROP'], 
+                        stdout=subprocess.PIPE,
+                        universal_newlines=True)
+                    subprocess.run(['sudo','ss', '-K', 'dst', ip], 
+                            stdout=subprocess.PIPE,
+                            universal_newlines=True)
+                    temp_block.append(key)
             else:
                 ip_count[ip] = 1
 
@@ -52,23 +61,19 @@ while True:
             print(ip + " --> " + str(ip_count[ip]), end="\n")
 
         print("\nIP" + " --> " + "Bytes sent")
-        temp_block=[]
         for key in ip_bytes_count.keys():
             ip = key.split(":")[0]
             ip_bytes = key.split(":")[1]
-            try:
-                if ip_bytes_count[key] > int(MAX_SAME_BYTES_CONNECTIONS) or int(ip_count[ip]) > int(MAX_CONNECTIONS):
-                    ips_blocked.append(key)
-                    
-                    subprocess.run(['sudo','iptables', '-A', 'INPUT', '-p', 'tcp', '--dport', key.split(":")[2], '-s', ip, '-j', 'DROP'], 
-                            stdout=subprocess.PIPE,
-                            universal_newlines=True)
-                    subprocess.run(['sudo','ss', '-K', 'dst', ip], 
-                            stdout=subprocess.PIPE,
-                            universal_newlines=True)
-                    temp_block.append(key)
-            except:
-                continue
+            if ip_bytes_count[key] > int(MAX_SAME_BYTES_CONNECTIONS):
+                ips_blocked.append(key)
+                
+                subprocess.run(['sudo','iptables', '-A', 'INPUT', '-p', 'tcp', '--dport', key.split(":")[2], '-s', ip, '-j', 'DROP'], 
+                        stdout=subprocess.PIPE,
+                        universal_newlines=True)
+                subprocess.run(['sudo','ss', '-K', 'dst', ip], 
+                        stdout=subprocess.PIPE,
+                        universal_newlines=True)
+                temp_block.append(key)
             print(ip + ":" + key.split(":")[2] + " --> Bytes: " + ip_bytes + " Count: " + str(ip_bytes_count[key]), end="\n")
         
         remove_other_tcp = []
