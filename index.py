@@ -52,7 +52,7 @@ while True:
                         ip_bytes_count[ip_bytes] += 1
                     else:
                         ip_bytes_count[ip_bytes] = 1
-                        
+
             temp_block=[]
             for key in ip_bytes_count.keys():
                 ip = key.split(":")[0]
@@ -64,9 +64,9 @@ while True:
                     subprocess.run(['sudo','iptables', '-A', 'INPUT', '-p', 'tcp', '--dport', key.split(":")[2], '-s', ip, '-j', 'DROP'], 
                            stdout=subprocess.PIPE,
                            universal_newlines=True)
+                    temp_block.append(key)
 
                 print(ip + " --> Bytes: " + ip_bytes + " Count: " + str(ip_bytes_count[key]), end="\n")
-                temp_block.append(key)
             
             for ip in temp_block:
                 ip_bytes_count.pop(ip)
