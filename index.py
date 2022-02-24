@@ -46,13 +46,14 @@ while True:
             if ip in ip_count:
                 ip_count[ip] += 1
                 if ip_count[ip] > int(MAX_CONNECTIONS):
-                    subprocess.run(['sudo','iptables', '-A', 'INPUT', '-p', 'tcp', '--dport', key.split(":")[2], '-s', ip, '-j', 'DROP'], 
+                    subprocess.run(['sudo','iptables', '-A', 'INPUT', '-p', 'tcp', '--dport', row[4].split(":")[1], '-s', ip, '-j', 'DROP'], 
                         stdout=subprocess.PIPE,
                         universal_newlines=True)
                     subprocess.run(['sudo','ss', '-K', 'dst', ip], 
                             stdout=subprocess.PIPE,
                             universal_newlines=True)
-                    temp_block.append(key)
+                    ips_blocked.append(ip_bytes)
+                    temp_block.append(ip_bytes)
             else:
                 ip_count[ip] = 1
 
