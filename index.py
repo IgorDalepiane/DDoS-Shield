@@ -17,6 +17,7 @@ except:
     time.sleep(2)
 ip_ports={}
 while True:
+    print(ip_ports)
     ip_count = {}
     
     process = subprocess.run(['ss', '-ntu'], 
