@@ -44,7 +44,7 @@ while True:
             print("IP" + " --> " + "Bytes sent")
             for row in tcp_cons:
                 ip = row[5].split(":")[0]
-                ip_bytes = ip+":"+row[2]
+                ip_bytes = ip+":"+row[2]+":"+row[4].split(":")[1]
 
                 if int(row[2]) != 0:
                     if ip_bytes in ip_bytes_count:
@@ -55,6 +55,12 @@ while True:
             for key in ip_bytes_count.keys():
                 ip = key.split(":")[0]
                 ip_bytes = key.split(":")[1]
-                print(ip + " --> Bytes: " + ip_bytes + " Count: " + str(ip_bytes_count[key]), end="\n")
+                
+                if ip_bytes_count[key] > 50:
+                    print("BLOCKED:"+key)
+                    subprocess.run(['ufw', '-deny', 'from', ip, 'to', 'any', 'port', key.split(":")[2]], 
+                           stdout=subprocess.PIPE,
+                           universal_newlines=True)
 
+                print(ip + " --> Bytes: " + ip_bytes + " Count: " + str(ip_bytes_count[key]), end="\n")
             time.sleep(0.05)
