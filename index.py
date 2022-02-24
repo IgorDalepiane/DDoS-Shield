@@ -45,6 +45,7 @@ while True:
                     ip_bytes_count[ip_bytes] = 1
 
             if ip_port in ip_ports:
+                print("ASDASDASDASDASDASDASDASd")
                 ip_ports[ip_port] += 1
                 if ip_ports[ip_port] > int(MAX_CONNECTIONS):
                     subprocess.run(['sudo','iptables', '-A', 'INPUT', '-p', 'tcp', '--dport', row[4].split(":")[1], '-s', ip, '-j', 'DROP'], 
