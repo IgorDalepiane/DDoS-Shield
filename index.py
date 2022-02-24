@@ -2,6 +2,7 @@ import subprocess
 import time
 import sys
 
+ip_bytes_count = {}
 while True:
     ip_count = {}
     
@@ -45,15 +46,14 @@ while True:
                 ip = row[5].split(":")[0]
                 ip_bytes = ip+":"+row[2]
 
-                if ip_bytes in ip_count:
-                    ip_count[ip_bytes] += 1
+                if ip_bytes in ip_bytes_count:
+                    ip_bytes_count[ip_bytes] += 1
                 else:
-                    ip_count[ip_bytes] = 1
+                    ip_bytes_count[ip_bytes] = 1
 
-            for key in ip_count.keys():
+            for key in ip_bytes_count.keys():
                 ip = key.split(":")[0]
                 ip_bytes = key.split(":")[1]
-                print(ip + " --> Bytes: " + ip_bytes + " Count: " + str(ip_count[key]), end="\n")
+                print(ip + " --> Bytes: " + ip_bytes + " Count: " + str(ip_bytes_count[key]), end="\n")
 
-            print(ip_count)
             time.sleep(1)
