@@ -20,7 +20,7 @@ while True:
             print("Invalid argument, use -c for connections or -b for bytes method.")
             exit(1)
         elif sys.argv[1] == '-c':
-            if sys.argv[2] is None:
+            if len(sys.argv) < 3:
                 print("Please use '-c <MAX_CONNECTIONS>'")
                 exit(1)
 
