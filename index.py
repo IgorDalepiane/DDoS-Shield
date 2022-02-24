@@ -48,10 +48,11 @@ while True:
                     else:
                         ip_bytes_count[ip_bytes] = 1
 
-                    if ip in ip_count:
-                        ip_count[ip] += 1
-                    else:
-                        ip_count[ip] = 1
+                if ip in ip_count:
+                    ip_count[ip] += 1
+                else:
+                    ip_count[ip] = 1
+
             for ip in ip_count.keys():
                 print("Number of Connections:", end='\n')
                 print(ip + " --> " + str(ip_count[ip]), end="\n")
