@@ -53,7 +53,7 @@ while True:
             for key in ip_count.keys():
                 ip = key.split(":")[0]
                 ip_bytes = key.split(":")[1]
-                print(ip + " --> Bytes: " + ip_bytes + " Count: " + ip_count[key], end="\n")
+                print(ip + " --> Bytes: " + ip_bytes + " Count: " + str(ip_count[key]), end="\n")
 
             print(ip_count)
             time.sleep(1)
