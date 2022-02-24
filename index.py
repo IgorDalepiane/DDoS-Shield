@@ -52,7 +52,8 @@ while True:
                         ip_bytes_count[ip_bytes] += 1
                     else:
                         ip_bytes_count[ip_bytes] = 1
-
+                        
+            temp_block=[]
             for key in ip_bytes_count.keys():
                 ip = key.split(":")[0]
                 ip_bytes = key.split(":")[1]
@@ -65,8 +66,11 @@ while True:
                            universal_newlines=True)
 
                 print(ip + " --> Bytes: " + ip_bytes + " Count: " + str(ip_bytes_count[key]), end="\n")
-                ip_bytes_count.pop(key)
+                temp_block.append(key)
             
+            for ip in temp_block:
+                ip_bytes_count.pop(ip)
+
             print("IPs Blocked:",end="\n")
             for ipblocked in ips_blocked:
                 print("BLOCKED: "+ipblocked, end="\n")
