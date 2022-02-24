@@ -2,8 +2,6 @@ import subprocess
 import time
 import sys
 
-ip_max_count = {}
-flag_to_clear = 0
 while True:
     ip_count = {}
     
@@ -11,20 +9,24 @@ while True:
                            stdout=subprocess.PIPE,
                            universal_newlines=True)
 
-    row_lists = []
+    tcp_cons = []
     if process.returncode is not None:
         rows = process.stdout.strip().split("\n")
         for row in rows:
-            row_lists.append(row.split())
+            tcp_cons.append(row.split())
         
-        row_lists.remove(row_lists[0])
-        if len(sys.argv) == 1 or sys.argv[1] != '-c' and sys.argv[1] != '-p':
-            print("Invalid argument, use -c for connections or -p for packages.")
+        tcp_cons.remove(tcp_cons[0])
+        if len(sys.argv) == 1 or sys.argv[1] != '-c' and sys.argv[1] != '-b':
+            print("Invalid argument, use -c for connections or -b for bytes method.")
             exit(1)
         elif sys.argv[1] == '-c':
+            if sys.argv[2] is None:
+                print("Please use '-c <MAX_CONNECTIONS>'")
+                exit(1)
+
             subprocess.run(['clear'])
             print("IP" + " --> " + "Connections")
-            for row in row_lists:
+            for row in tcp_cons:
                 ip = row[5].split(":")[0]
                 if ip in ip_count:
                     ip_count[ip] += 1
@@ -35,25 +37,23 @@ while True:
                 print(ip + " --> Connections: " + str(ip_count[ip]), end="\n")
             time.sleep(1)
 
-        elif sys.argv[1] == '-p':
+        elif sys.argv[1] == '-b':
             subprocess.run(['clear'])
             
-            print("IP" + " --> " + "Packages")
-            for row in row_lists:
+            print("IP" + " --> " + "Bytes sent")
+            for row in tcp_cons:
                 ip = row[5].split(":")[0]
-                if ip in ip_count:
-                    ip_count[ip] += int(row[2])
+                ip_bytes = ip+":"+row[2]
+
+                if ip_bytes in ip_count:
+                    ip_count[ip_bytes] += 1
                 else:
-                    ip_count[ip] = int(row[2])
-            
-            for ip in ip_count.keys():
-                if ip in ip_max_count:
-                    if int(ip_count[ip]) > ip_max_count[ip]:
-                        ip_max_count[ip] = int(ip_count[ip])
-                else:
-                    ip_max_count[ip] = int(ip_count[ip])
-                print(ip + " --> Actual: " + str(ip_count[ip]) + "  Max: " + str(ip_max_count[ip]) +"\n")
-            time.sleep(0.05)
-        else:
-            print("Invalid argument, use -c for connections or -p for packages.")
-            exit(1)
+                    ip_count[ip_bytes] = 1
+
+            for key in ip_count.keys():
+                ip = key.split(":")[0]
+                ip_bytes = key.split(":")[1]
+                print(ip + " --> Bytes: " + ip_bytes + " Count: " + ip_count[key], end="\n")
+
+            print(ip_count)
+            time.sleep(1)
