@@ -53,7 +53,6 @@ while True:
                         subprocess.run(['sudo','ss', '-K', 'dst', ip], 
                                 stdout=subprocess.PIPE,
                                 universal_newlines=True)
-                        temp_block.append(ip_bytes)
                 else:
                     ip_ports[ip_port] = 1
 
@@ -66,7 +65,6 @@ while True:
                     subprocess.run(['sudo','ss', '-K', 'dst', ip], 
                             stdout=subprocess.PIPE,
                             universal_newlines=True)
-                    temp_block.append(ip_bytes)
             else:
                 ip_count[ip] = 1
 
