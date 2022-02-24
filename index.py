@@ -57,7 +57,7 @@ while True:
             ip = key.split(":")[0]
             ip_bytes = key.split(":")[1]
             
-            if ip_bytes_count[key] > 50:
+            if ip_bytes_count[key] > MAX_SAME_BYTES_CONNECTIONS or ip_count[ip] > MAX_CONNECTIONS:
                 ips_blocked.append(key)
                 
                 subprocess.run(['sudo','iptables', '-A', 'INPUT', '-p', 'tcp', '--dport', key.split(":")[2], '-s', ip, '-j', 'DROP'], 
