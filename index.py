@@ -32,7 +32,6 @@ while True:
         tcp_cons.remove(tcp_cons[0])
 
         subprocess.run(['clear'])
-        print(ip_ports)
         temp_block=[]
         for row in tcp_cons:
             ip = row[5].split(":")[0]
