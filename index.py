@@ -68,7 +68,7 @@ while True:
         for value in sortedList:
             sortedDict[value[0]] = value[1]
 
-        for key in sortedList.keys():
+        for key in sortedDict.keys():
             ip = key.split(":")[0]
                 
             if actualIp != None and ip != actualIp:
