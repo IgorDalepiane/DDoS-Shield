@@ -63,7 +63,7 @@ while True:
 
         print("\nBytes sent" + " --> " + "Counter")
         actualIp = None
-        print(ip_bytes_count + "#")
+        print(ip_bytes_count)
         if len(ip_bytes_count)>0:
             np.sort(ip_bytes_count, axis=0)
             
