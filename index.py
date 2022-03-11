@@ -87,7 +87,7 @@ while True:
                         stdout=subprocess.PIPE,
                         universal_newlines=True)
                 temp_block.append(key)
-            print( + ip_bytes + " --> " + str(ip_bytes_count[key]), end=" | ")
+            print(ip_bytes + " --> " + str(ip_bytes_count[key]), end=" | ")
         
         remove_other_tcp = []
         for ip in temp_block:
