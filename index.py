@@ -64,7 +64,10 @@ while True:
         actualIp = None
 
         sortedList = sorted(ip_bytes_count.items(), key=lambda x: x[1], reverse=True)
-            
+        sortedDict = {}
+        for value in sortedList:
+            sortedDict[value[0]] = value[1]
+
         for key in sortedList.keys():
             ip = key.split(":")[0]
                 
