@@ -61,8 +61,17 @@ while True:
             print(ip + " --> " + str(ip_count[ip]), end="\n")
 
         print("\nIP" + " --> " + "Bytes sent")
+        actualIp = None
         for key in ip_bytes_count.keys():
             ip = key.split(":")[0]
+                
+            if actualIp != None and ip != actualIp:
+                actualIp = ip
+                print("\n" + actualIp + ": ")
+            elif actualIp == None:
+                actualIp = ip
+                print(actualIp + ": ")
+
             ip_bytes = key.split(":")[1]
             if ip_bytes_count[key] > int(MAX_SAME_BYTES_CONNECTIONS):
                 ips_blocked.append(key)
@@ -74,7 +83,7 @@ while True:
                         stdout=subprocess.PIPE,
                         universal_newlines=True)
                 temp_block.append(key)
-            print(ip + ":" + key.split(":")[2] + " --> Bytes: " + ip_bytes + " Count: " + str(ip_bytes_count[key]), end="\n")
+            print(key.split(":")[2] + " --> " + ip_bytes + " Count: " + str(ip_bytes_count[key]), end=" | ")
         
         remove_other_tcp = []
         for ip in temp_block:
