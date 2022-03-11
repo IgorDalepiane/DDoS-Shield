@@ -1,7 +1,6 @@
 import subprocess
 import time
 import sys
-import numpy as np
 
 ip_bytes_count = {}
 ips_blocked = []
@@ -65,7 +64,7 @@ while True:
         actualIp = None
         print(ip_bytes_count)
         if len(ip_bytes_count)>0:
-            np.sort(ip_bytes_count, axis=0)
+            sorted(ip_bytes_count.items(), key=lambda x: x[1], reverse=True)
             
         for key in ip_bytes_count.keys():
             ip = key.split(":")[0]
