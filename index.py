@@ -63,7 +63,9 @@ while True:
 
         print("\nBytes sent" + " --> " + "Counter")
         actualIp = None
-        np.sort(ip_bytes_count, axis=0)
+        if len(ip_bytes_count)>0:
+            np.sort(ip_bytes_count, axis=0)
+            
         for key in ip_bytes_count.keys():
             ip = key.split(":")[0]
                 
