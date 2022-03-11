@@ -63,9 +63,9 @@ while True:
         print("\nBytes sent" + " --> " + "Counter")
         actualIp = None
 
-        sorted(ip_bytes_count.items(), key=lambda x: x[1], reverse=True)
+        sortedList = sorted(ip_bytes_count.items(), key=lambda x: x[1], reverse=True)
             
-        for key in ip_bytes_count.keys():
+        for key in sortedList.keys():
             ip = key.split(":")[0]
                 
             if actualIp != None and ip != actualIp:
