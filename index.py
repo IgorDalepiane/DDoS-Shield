@@ -62,7 +62,7 @@ while True:
 
         print("\nBytes sent" + " --> " + "Counter")
         actualIp = None
-        print(ip_bytes_count)
+        
         if len(ip_bytes_count)>0:
             sorted(ip_bytes_count.items(), key=lambda x: x[1], reverse=True)
             
