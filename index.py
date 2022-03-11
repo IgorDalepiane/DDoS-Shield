@@ -1,6 +1,7 @@
 import subprocess
 import time
 import sys
+import numpy as np
 
 ip_bytes_count = {}
 ips_blocked = []
@@ -60,8 +61,9 @@ while True:
         for ip in ip_count.keys():
             print(ip + " --> " + str(ip_count[ip]), end="\n")
 
-        print("\nIP" + " --> " + "Bytes sent")
+        print("\nBytes sent" + " --> " + "Counter")
         actualIp = None
+        np.sort(ip_bytes_count, axis=0)
         for key in ip_bytes_count.keys():
             ip = key.split(":")[0]
                 
@@ -83,7 +85,7 @@ while True:
                         stdout=subprocess.PIPE,
                         universal_newlines=True)
                 temp_block.append(key)
-            print(key.split(":")[2] + " --> " + ip_bytes + " Count: " + str(ip_bytes_count[key]), end=" | ")
+            print( + ip_bytes + " --> " + str(ip_bytes_count[key]), end=" | ")
         
         remove_other_tcp = []
         for ip in temp_block:
